@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+- '8'
+before_install:
+- npm i -g markdown-to-html
+- wget https://github.com/github/hub/releases/download/v2.2.9/hub-linux-386-2.2.9.tgz
+- tar -xvzf hub-linux-386-2.2.9.tgz
+- export PATH=${PATH}:$PWD/hub-linux-386-2.2.9/bin/
+before_script:
+- git clone -b v2 git@github.ibm.com:bluemix-mobile-services/bmd-devops-pipeline.git
+- cd /tmp
+- git clone -b master https://github.com/ibm-developer/changelog-generator-slack-notification.git
+- npm install changelog-generator-slack-notification
+- cd -
+- sh ./bmd-devops-pipeline/scripts/setnpmrc.sh
+script: npm test && bash ./bmd-devops-pipeline/scripts/npm_version_upgrade.sh
+branches:
+  only:
+  - development
+  - master
+notifications:
+  slack:
+    secure: u45ofCXqSu+yCwy/hkLlihbTiF21Rt4X8Gp4Up3pTaW7lK4gd/g0NTr0SW0lLRC4X2igCMoO5y8RXK4a48CDJOupdil2+774+Q3TQm5njMc7YZCFo4XtcYvBFaaxpu9OdvN9Q5KwAoCS0AgGyb+LeWZP+P3saMwYjLGnUdBTFDnFO1tLDePiyEZQneRqzlJ2rOXnfZVDg2y/VZCgPEpCuYMLF13+0pcY/T+yEzUyQThnq7u2dgkj6Nj5345w+wTixEK4aIAtHopYRTISNmaXJdIjBJ5VjN1A8IcPJKnrS4i52I09rbMfaQc928gw1jME2K127pwdIrgpiR7+qxrntoHAyYuOMUSV0JutBIdXgESckm318N377aORIc3/9angUM/pbcsvYhFiQtNv6ZeOzgl8wrSb6ZGkIZWMk1+yKaJ+hKNxh1B0wP6QltudLdjtlsxabIa1V07Wu/BDUN8qxjq9jLS3NOs4bcFlCbcLfYOOt84lKxL2ZtEdy9lw8dJsIHm70rVXGE1npaK74cNeGKZs1mhODKM6K71pF8JPkqynEH8VVNF4Yl8WHFS8SGSuDhVFJmpLJyz1rxcWFwduyWj0XOtUo4qRAiXcYHLouH42lJSvdQq7tT72g7OXumHO/ob6fccuz3jbY1hR1HfKAkX17DTlehOafQ6okp7nV8M=
