@@ -244,8 +244,20 @@ module.exports = class extends Generator {
 		this._augmentPackageJSON({ angularjs: true });
 
 		this.fs.copyTpl(
-			this.templatePath('angularjs/client'),
-			this.destinationPath('client'), {}
+			this.templatePath('angularjs/client/app.js'),
+			this.destinationPath('client/app.js'), {}
+		);
+		this.fs.copyTpl(
+			this.templatePath('angularjs/client/component.html'),
+			this.destinationPath('client/component.html'), {}
+		);
+		this.fs.copyTpl(
+			this.templatePath('angularjs/client/default.css'),
+			this.destinationPath('client/default.css'), {}
+		);
+		this.fs.copyTpl(
+			this.templatePath('angularjs/client/index.html'),
+			this.destinationPath('client/index.html'), {}
 		);
 
 		this.fs.copyTpl(

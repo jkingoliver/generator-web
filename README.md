@@ -2,75 +2,59 @@
 
 # 
 
-Creates a web project sources in an existing project directory adding boilerplate code for modern web development.
+Creates web project sources in an existing project directory adding boilerplate code for modern web development.
 
 ## Getting Started with a generated project
 
 1. Run the generator and choose the options:
-  `yo @arf/web`
+  `yo web`
 
-2. Install the dependencies: 
-  `npm install`
+1. Select your chosen framework: None, Angular or React
 
-3. Compile the sources:
-
-  `./node_modules/webpack/bin/webpack.js`
+1. Select your chosen language: Swift, Node, Java, Python-Flask or Python-Django
   
-  or, if you have Webpack installed, simply:
-  
-  `webpack`
-  
-3. Open `public/index.html` on your browser
+1. Open `public/index.html` in your browser
 
 ## Frameworks
 
 Frameworks are chosen using the `framework` option at the end of the generator. For example,
 
 ```
-yo @arf/web --framework {None, Webpack, React}
+yo web --framework {None, React, AngularJS}
 ```
 
 ### Basic
 
-In the basic case, the following files are created:
+In the basic web project, the following files are created and stored in the `public` directory:
 
-- `public/index.html` - Basic HTML scaffold
-- `public/css/default.css` - Empty stylesheet
-- `public/js/bundle.js` - Empty JavaScript source
+- `public/index.html` - Basic landing page with inline CSS and encoded image assets
+- `public/404.html` - Basic 404 error page
+- `public/500.html` - Basic 500 error page
 
-It is therefore important that the web server is registered to serve files in the `public` directory.
-
-### WebPack
-
-Adding the Webpack option creates a web project with an opinionated structure. Webpack allows your sources to be bundled and compressed. In addition, JavaScript extensions such as ES2015+ and stage-2 are supported for transpilation of sources from `jsx` to `js`. 
-
-- [gulp](http://gulpjs.com/) - a task runner to compile your project
-- [webpack](https://webpack.github.io/) - bundles your JS modules
-  - sass-loader 
-  - css-loader
-  - style-loader
-- [sass](http://sass-lang.com/) - CSS extension language
-- [babel](https://babeljs.io/) - support ES2015+
-
-Basic web sources are stored in to `src/client`:
-
-- `src/client/app` - Your application
-- `src/client/html` - HTML sources
-- `src/client/sass` - SASS stylesheets
-
-After `gulp` is run, the sources in are compiled into the `public` subdirectory.
+It is important that the web server is registered to serve files in the `public` directory.
 
 ## React
 
 - [react](https://facebook.github.io/react/) - to build user interfaces
+- [webpack](https://webpack.github.io/) - bundles your JS modules
+  - sass-loader 
+  - css-loader
+  - style-loader
+
+Web sources for React projects are stored in the `client` directory:
+
+- `client/index.html` and `client/index.jsx` - Landing page sources
+- `client/404.html` and `client/404.jsx` (and corresponding 500 page sources) - Error page sources
+- `client/default.css` - minimized stylesheet with inline encoded images
 
 ## AngularJS
 
-TODO
+Web sources for AngularJS projects are stored in the `client` directory:
 
-# Stylesheet frameworks
-
- - [Bulma](http://bulma.io/) - a modern CSS framework based on Flexbox
+- `client/index.html` and `client/component.html` - Landing page sources
+- `client/404.html` and `client/500.html` - Error pages sources
+- `client/default.css` - minimized stylesheet with inline encoded images
+- `client/app.js` - Angular app initialization, config and routing
 
 
 ## Publishing Changes
