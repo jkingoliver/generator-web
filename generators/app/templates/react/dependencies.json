@@ -10,6 +10,7 @@
     "css-loader": "^0.28.7",
     "foreman": "^2.0.0",
     "html-webpack-plugin": "^2.30.1",
+    "copy-webpack-plugin": "^4.5.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "uglifyjs-webpack-plugin": "^1.0.1",

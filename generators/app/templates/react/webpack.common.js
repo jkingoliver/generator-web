@@ -13,31 +13,24 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackPluginIndex = new HtmlWebpackPlugin({
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const WebpackPluginPluginConfig = new HtmlWebpackPlugin({
   template: './client/index.html',
   filename: 'index.html',
-  inject: 'body',
-  chunks: ['index']
-});
-const WebpackPlugin404 = new HtmlWebpackPlugin({
-  template: './client/404.html',
-  filename: '404.html',
-  chunks: ['404']
-});
-const WebpackPlugin500 = new HtmlWebpackPlugin({
-  template: './client/500.html',
-  filename: '500.html',
-  chunks: ['500']
+  inject: 'body'
 });
 
+const CopyWebpackPluginConfig= new CopyWebpackPlugin([
+  { from: './client/default.css', to: path.resolve(__dirname, 'public') },
+  { from: './client/404.html', to: path.resolve(__dirname, 'public') },
+  { from: './client/500.html', to: path.resolve(__dirname, 'public') }
+]);
+
 module.exports = {
-  entry: {
-    'index': './client/index.jsx',
-    '404': './client/404.jsx',
-    '500': './client/500.jsx'
-  },
+  entry: './client/index.jsx',
   output: {
-    filename: 'js/[name].bundle.[hash].js',
+    filename: 'js/bundle.[hash].js',
     path: path.resolve(__dirname, 'public')
   },
   module : {
@@ -54,8 +47,7 @@ module.exports = {
     ]
   },
   plugins: [
-    WebpackPluginIndex,
-    WebpackPlugin404,
-    WebpackPlugin500
+    WebpackPluginPluginConfig,
+    CopyWebpackPluginConfig
   ]
 };
